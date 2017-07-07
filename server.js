@@ -6,11 +6,12 @@
 // =============================================================
 var express = require("express");
 var handlebars = require("express-handlebars");
-var mysql = require("mysql")
+//var mysql = require("mysql");
 var bodyParser = require("body-parser");
 var path = require("path");
 var fs = require("fs");
-
+var model = require("./model/model.js");
+var orm = require("./model/orm.js");
 
 
 // Sets up the Express App
@@ -25,14 +26,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+console.log('Hello world?');
 
+orm.luckyBastards(console.log);
+
+/*
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
-    database: "template_db"
+    password: "root",
+    database: "thrones_db"
 });
 
 connection.connect(function(err) {
@@ -42,5 +47,6 @@ connection.connect(function(err) {
     }
     console.log("connected as id " + connection.threadId);
 });
+*/
 
 //module.exports = connection;

@@ -11,6 +11,10 @@ USE `thrones_db`;
 ALTER TABLE `thrones_db`.`character-predictions`
 ADD COLUMN `like` BOOLEAN DEFAULT NULL AFTER `isAlive`;
 
+# Make column to add whether someone has died on TV
+ALTER TABLE `thrones_db`.`character-predictions`
+  ADD COLUMN `tv_dead` BOOLEAN NULL AFTER `like`;
+
 # Look at a table
 SELECT * FROM `character-deaths`;
 SELECT * FROM `character-predictions`;
@@ -24,6 +28,7 @@ DELETE FROM `character-predictions` WHERE NOT `actual` AND `isAlive`;
 # Delete contradictions, and then remove extra row.
 ALTER TABLE `thrones_db`.`character-predictions`
 DROP COLUMN `isAlive`;
+
 
 
 # Data row consisting of column names accidentally imported from csv
