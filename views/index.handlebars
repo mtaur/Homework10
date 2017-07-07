@@ -1,22 +1,42 @@
-<h1>Day Planner</h1>
+<h1>Lucky bastards? (Alive in the books, maybe not on show?)</h1>
 
 <ul>
-	{{#each plans}}
+	{{#each data}}
 		<li>
-			<p>
-				{{this.id}}. {{this.plan}}
+			<h2>
+				Name: {{name}}
+			</h2>
 
-			<form action="/delete/" method="POST">
-			<input type="hidden" name="id" value="{{this.id}}" />
-				<button type="submit">Delete Plan!</button>
+			<p>Modeled survival chance: {{alive}}</p>
+
+			<p>Alive on TV: {{tv_alive}}</p>
+
+			<p>I like this character: {{like}}</p>
+
+			<p>Age: {{age}}</p>
+
+
+			<form action="/alive/{{this.id}}" method="POST">
+				<button type="submit">Is alive on the TV show!</button>
 			</form>
-			<form action="/update" method="POST" class="button-size">
+			<form action="/dead/{{this.id}}" method="POST">
+				<button type="submit">Is dead on the TV show!</button>
+			</form>
+			<form action="/unknown/{{this.id}}" method="POST">
+				<button type="submit">I don't know anything about this character!</button>
+			</form>
+			<form action="/like/{{this.id}}" method="POST">
+				<button type="submit">I like this character!</button>
+			</form>
+			<form action="/dislike/{{this.id}}" method="POST">
+				<button type="submit">I don't like this character!</button>
+			</form>
+			<!--form action="/update" method="POST" class="button-size">
 				<input type="hidden" name="id" value="{{this.id}}" />
-				<textarea type="text" name="plan" placeholder="plan">{{this.plan}}</textarea>
+				<textarea type="text" name="plan" placeholder="plan">{{this.data}}</textarea>
 				<button type="submit">Update Plan!</button>
-			</form>
+			</form-->
 
-			</p>
 		</li>
 	{{/each}}
 </ul>

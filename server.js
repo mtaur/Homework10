@@ -26,9 +26,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+
+app.engine("handlebars", handlebars({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
+app.listen(PORT);
+
+
 console.log('Hello world?');
 
-orm.luckyBastards(console.log);
+//orm.luckyBastards(console.log);
+
+
+app.get("/", function(req, res) {
+/*    connection.query("SELECT * FROM plans;", function(err, data) {
+        if (err) {
+            throw err;
+        }*/
+
+        function renderMe(response){
+            res.render("index", {data: response});
+//            res.send(response);
+        }
+
+        orm.luckyBastards(renderMe);
+});
 
 /*
 var mysql = require("mysql");

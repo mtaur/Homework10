@@ -13,7 +13,7 @@ ADD COLUMN `like` BOOLEAN DEFAULT NULL AFTER `isAlive`;
 
 # Make column to add whether someone has died on TV
 ALTER TABLE `thrones_db`.`character-predictions`
-  ADD COLUMN `tv_dead` BOOLEAN NULL AFTER `like`;
+  ADD COLUMN `tv_alive` BOOLEAN NULL AFTER `like`;
 
 # Look at a table
 SELECT * FROM `character-deaths`;

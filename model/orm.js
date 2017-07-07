@@ -4,11 +4,22 @@ var connection = require("./connection.js");
 
 var orm = {
   luckyBastards: function(call){
-    var queryString = "SELECT `name`,`alive` FROM `thrones_db`.`character-predictions` WHERE `alive`<.5 AND `actual` ORDER BY `popularity` DESC LIMIT 50;"
+//    var queryString = "SELECT `name`,`alive`,`tv_alive` FROM `thrones_db`.`character-predictions` WHERE `alive`<.5 AND `actual` ORDER BY `popularity` DESC LIMIT 50;"
+    var queryString = "SELECT * FROM `thrones_db`.`character-predictions` WHERE `alive`<.5 AND `actual` ORDER BY `popularity` DESC LIMIT 50;"
       connection.query(queryString, function(err, result) {
           call(result);
       });
   },
+
+    like: function(charPredId){
+        var queryString = "UPDATE `thrones_db`.`character-predictions` WHERE `S.No` = ? ;"
+
+        connection.query(queryString, function(err, result) {
+            call(result);
+        });
+    }
+
+    /*
 
   selectWhere: function(tableInput, colToSearch, valOfCol) {
     var queryString = "SELECT * FROM ?? WHERE ?? = ?";
@@ -30,6 +41,7 @@ var orm = {
       console.log(result);
     });
   }
+  */
 };
 
 module.exports = orm;
